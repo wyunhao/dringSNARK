@@ -4,6 +4,10 @@ This is a repository directly cloned from the implementation of [Rinocchio](http
 
 To get the unit time of operations for our encoding schemes:
 ```bash
+sudo apt-get update && sudo apt-get install build-essential # if needed
+sudo apt-get install autoconf # if no autoconf
+sudo apt-get install cmake # if no cmake
+
 cd dringSNARK
 git submodule init && git submodule update --recursive
 mkdir build && cd build && cmake ..
