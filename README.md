@@ -7,6 +7,7 @@ To get the unit time of operations for our encoding schemes:
 sudo apt-get update && sudo apt-get install build-essential # if needed
 sudo apt-get install autoconf # if no autoconf
 sudo apt-get install cmake # if no cmake
+sudo apt install libboost-all-dev
 
 cd dringSNARK
 git submodule init && git submodule update --recursive
