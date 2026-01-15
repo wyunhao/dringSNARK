@@ -16,11 +16,13 @@ And then run, which should print out numbers similar to Figure 8 in our submissi
 
 To generate the numbers in Figure 5 and Figure 6, run:
 ```bash
+cd ringSNARK
 python3 runtime.py
 ```
 
 To generate the numbers in Figure 7, run:
 ```bash
+cd ringSNARK
 python3 runtime_N.py
 ```
 
