@@ -126,10 +126,15 @@ int main() {
     cout << "Size of pk:\t" << keypair.pk.size_in_bits() << " bits" << endl;
     cout << "Size of vk:\t" << keypair.vk.size_in_bits() << " bits" << endl;
 
+    auto start = chrono::high_resolution_clock::now();
     const auto proof = ringsnark::rinocchio::prover(
         keypair.pk, pb.primary_input(), pb.auxiliary_input());
+    auto end = chrono::high_resolution_clock::now();
     cout << "Size of proof:\t" << proof.size_in_bits() << " bits" << endl;
-
+    cout << "[TIME][PROVER] \t"
+       << chrono::duration_cast<chrono::microseconds>(end - start).count()
+       << " us" << endl;
+    
     const bool verif =
         ringsnark::rinocchio::verifier(keypair.vk, pb.primary_input(), proof);
     cout << "Verification passed: " << std::boolalpha << verif << endl;

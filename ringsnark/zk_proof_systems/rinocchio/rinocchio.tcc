@@ -1,4 +1,5 @@
 #include <ringsnark/reductions/r1cs_to_qrp/r1cs_to_qrp.hpp>
+#include <omp.h>
 
 namespace ringsnark::rinocchio {
 template <typename RingT, typename EncT>
@@ -78,6 +79,8 @@ proof<RingT, EncT> prover(const proving_key<RingT, EncT> &pk,
 #ifdef DEBUG
   assert(pk.constraint_system.is_satisfied(primary_input, auxiliary_input));
 #endif
+
+  omp_set_num_threads(16); 
   const bool use_zk = !auxiliary_input.empty();
   if (!use_zk) {
     cout << "[Prover] "

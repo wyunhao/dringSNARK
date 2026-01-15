@@ -235,6 +235,9 @@ qrp_witness<RingT> r1cs_to_qrp_witness_map(
   domain->add_poly_Z(d1 * d2, coefficients_for_H);
 
   // Compute coefficients of (A*B - C) / Z
+
+  auto start = chrono::high_resolution_clock::now();
+  
   auto min_C(aC);
   for (auto &c_i : min_C) {
     c_i.negate_inplace();
@@ -251,6 +254,11 @@ qrp_witness<RingT> r1cs_to_qrp_witness_map(
        ++i) {
     coefficients_for_H[i] += H_tmp[i];
   }
+
+  auto end = chrono::high_resolution_clock::now();
+  cout << "[TIME][PROVER - H] \t"
+    << chrono::duration_cast<chrono::microseconds>(end - start).count()
+    << " us" << endl;
 
   return qrp_witness<RingT>(cs.num_variables(), domain->m, cs.num_inputs(), d1,
                             d2, d3, full_variable_assignment, a_io, b_io, c_io,
